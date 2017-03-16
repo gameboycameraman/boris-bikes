@@ -1,21 +1,25 @@
 require_relative "bike.rb"
 
 class DockingStation
-  attr_reader :bike
+  attr_reader :bikes, :capacity
+  def initialize
+    @capacity = 20
+    @bikes = []
+  end
 
   def release_bike
-    unless @bike
+    if @bikes.empty?
       fail "No bike for you love"
     else
-      @bike
+      @bikes.pop
     end
   end
 
   def dock(bike)
-    if @bike
+    if @bikes.count >= @capacity
       fail "Already full here love"
     else
-      @bike = bike
+      @bikes << bike
     end
   end
 
