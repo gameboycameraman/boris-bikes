@@ -10,12 +10,15 @@ class DockingStation
 
     @capacity = number
     @bikes = []
-    
+
   end
 
   def release_bike
     fail "No bike for you love" if empty?
-    @bikes.pop
+    fail "This bike is broken love" if @bikes.all? { |bike| bike.broken_bike? }
+    selection = @bikes.find { |bike| bike.broken_bike? == false || bike.broken_bike? == nil}
+    @bikes.delete(selection)
+    selection
   end
 
 
