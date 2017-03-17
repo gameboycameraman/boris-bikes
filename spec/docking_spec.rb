@@ -36,4 +36,16 @@ describe DockingStation do
     expect(subject.dock(bike)).to eq (subject.bikes << bike)
   end
 
+  describe "#initialize" do
+    it "gives a user defined capacity" do
+      station = DockingStation.new(50)
+      expect(station.capacity).to eq 50
+    end
+
+    it "gives a default capacity of 20" do
+      station = DockingStation.new
+      expect(station.capacity).to eq 20
+    end
+  end
+
 end
